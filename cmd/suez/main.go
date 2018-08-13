@@ -15,6 +15,12 @@ var (
 
 			Method: "GET",
 		},
+		suez.Channel{
+			OriginEndpoint: "/staticmap",
+			DestinationURL: os.Getenv("NAMI_URL"),
+
+			Method: "GET",
+		},
 	}
 
 	envs = make(map[string]string)

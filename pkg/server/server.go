@@ -21,6 +21,7 @@ func NewServer(channels []suez.Channel, envs map[string]string) *Server {
 func (s *Server) Start() {
 	router := mux.NewRouter()
 	for _, channel := range s.channels {
+		channel := channel // XXX: necessary!
 		router.HandleFunc(channel.OriginEndpoint, channel.HandlerFunc(s.envs)).
 			Methods(channel.Method)
 	}
