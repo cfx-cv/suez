@@ -15,10 +15,10 @@ services:
     ports:
       - "81:80"
     networks:
-      default:
+      gofeed:
         aliases:
           - suez_app
 
 networks:
-  default:
-    name: gofeed-network
+  gofeed:
+    name: gofeed
