@@ -10,8 +10,14 @@ services:
       - GCP_API_KEY=${GCP_API_KEY}
     volumes:
       - .:/go/src/github.com/cfx-cv/suez:z
+    expose:
+      - "80"
     ports:
-      - "3001:80"
+      - "81:80"
+    networks:
+      default:
+        aliases:
+          - suez_app
 
 networks:
   default:
