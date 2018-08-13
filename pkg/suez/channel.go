@@ -16,6 +16,13 @@ type Channel struct {
 }
 
 func (c *Channel) HandlerFunc(envs map[string]string) http.HandlerFunc {
+	switch c.Method {
+	default:
+		return c.handlerFuncGET(envs)
+	}
+}
+
+func (c *Channel) handlerFuncGET(envs map[string]string) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		url := c.buildURL(r.URL, envs)
 		resp, err := http.Get(url)
