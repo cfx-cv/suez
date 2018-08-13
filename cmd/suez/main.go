@@ -12,11 +12,24 @@ var (
 		suez.Channel{
 			OriginEndpoint: "/distance",
 			DestinationURL: os.Getenv("DIJKSTRA_URL"),
+
+			Method: "GET",
 		},
 	}
+
+	envs = make(map[string]string)
 )
 
+func init() {
+	keys := []string{
+		"GCP_API_KEY",
+	}
+
+	for _, key := range keys {
+		envs[key] = os.Getenv(key)
+	}
+}
+
 func main() {
-	key := os.Getenv("GCP_API_KEY")
-	server.NewServer(channels, key).Start()
+	server.NewServer(channels, envs).Start()
 }

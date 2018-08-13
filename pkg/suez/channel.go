@@ -11,11 +11,13 @@ import (
 type Channel struct {
 	OriginEndpoint string
 	DestinationURL string
+
+	Method string
 }
 
-func (c *Channel) HandlerFunc(key string) http.HandlerFunc {
+func (c *Channel) HandlerFunc(envs map[string]string) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		url := c.buildURL(r.URL, key)
+		url := c.buildURL(r.URL, envs)
 		resp, err := http.Get(url)
 		if err != nil {
 			log.Print(err)
@@ -35,6 +37,7 @@ func (c *Channel) HandlerFunc(key string) http.HandlerFunc {
 	})
 }
 
-func (c *Channel) buildURL(url *url.URL, key string) string {
+func (c *Channel) buildURL(url *url.URL, envs map[string]string) string {
+	key := envs["GCP_API_KEY"]
 	return fmt.Sprint(c.DestinationURL, url.String(), fmt.Sprintf("&api_key=%s", key))
 }
