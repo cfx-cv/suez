@@ -24,7 +24,7 @@ func (s *Server) Start() {
 		router.HandleFunc(channel.OriginEndpoint, channel.HandlerFunc(s.key))
 	}
 
-	err := http.ListenAndServe(":8000", router)
+	err := http.ListenAndServe(":80", router)
 	if err != nil {
 		log.Fatal(err)
 	}

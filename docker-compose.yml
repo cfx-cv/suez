@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
   app:
@@ -11,4 +11,8 @@ services:
     volumes:
       - .:/go/src/github.com/cfx-cv/suez:z
     ports:
-      - "3001:8000"
+      - "3001:80"
+
+networks:
+  default:
+    name: gofeed-network
