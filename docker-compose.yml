@@ -13,7 +13,7 @@ services:
     expose:
       - "80"
     ports:
-      - "81:80"
+      - "3001:80"
     networks:
       gofeed:
         aliases:
