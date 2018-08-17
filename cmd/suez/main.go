@@ -11,13 +11,13 @@ var (
 	channels = []suez.Channel{
 		suez.Channel{
 			OriginEndpoint: "/distance",
-			DestinationURL: os.Getenv("DIJKSTRA_URL"),
+			DestinationURL: os.Getenv("DIJKSTRA_URI"),
 
 			Method: "GET",
 		},
 		suez.Channel{
 			OriginEndpoint: "/staticmap",
-			DestinationURL: os.Getenv("NAMI_URL"),
+			DestinationURL: os.Getenv("NAMI_URI"),
 
 			Method: "GET",
 		},

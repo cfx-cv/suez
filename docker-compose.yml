@@ -5,8 +5,8 @@ services:
     build: .
     command: ./scripts/run.sh
     environment:
-      - DIJKSTRA_URL=${DIJKSTRA_URL}
-      - NAMI_URL=${NAMI_URL}
+      - DIJKSTRA_URI=${DIJKSTRA_URI}
+      - NAMI_URI=${NAMI_URI}
       - GCP_API_KEY=${GCP_API_KEY}
     volumes:
       - .:/go/src/github.com/cfx-cv/suez:z
