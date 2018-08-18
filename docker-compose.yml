@@ -7,6 +7,7 @@ services:
     environment:
       - DIJKSTRA_URI=${DIJKSTRA_URI}
       - NAMI_URI=${NAMI_URI}
+      - HERALD_URI=${HERALD_URI}
       - GCP_API_KEY=${GCP_API_KEY}
     volumes:
       - .:/go/src/github.com/cfx-cv/suez:z
