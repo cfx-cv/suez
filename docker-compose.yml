@@ -12,8 +12,6 @@ services:
       - .:/go/src/github.com/cfx-cv/suez:z
     expose:
       - "80"
-    ports:
-      - "3001:80"
     networks:
       gofeed:
         aliases:
