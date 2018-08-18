@@ -6,6 +6,7 @@ import (
 
 	"github.com/gorilla/mux"
 
+	"github.com/cfx-cv/herald/pkg/common"
 	"github.com/cfx-cv/suez/pkg/suez"
 )
 
@@ -29,5 +30,6 @@ func (s *Server) Start() {
 	err := http.ListenAndServe(":80", router)
 	if err != nil {
 		log.Fatal(err)
+		common.Publish(common.SuezErrors, err.Error())
 	}
 }

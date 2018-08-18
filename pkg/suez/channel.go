@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+
+	"github.com/cfx-cv/herald/pkg/common"
 )
 
 type Channel struct {
@@ -28,6 +30,7 @@ func (c *Channel) handlerFuncGET(envs map[string]string) http.HandlerFunc {
 		resp, err := http.Get(url)
 		if err != nil {
 			log.Print(err)
+			common.Publish(common.SuezErrors, err.Error())
 			return
 		}
 		defer resp.Body.Close()
@@ -35,10 +38,12 @@ func (c *Channel) handlerFuncGET(envs map[string]string) http.HandlerFunc {
 		var body map[string]interface{}
 		if err := json.NewDecoder(resp.Body).Decode(&body); err != nil {
 			log.Print(err)
+			common.Publish(common.SuezErrors, err.Error())
 			return
 		}
 		if err := json.NewEncoder(w).Encode(body); err != nil {
 			log.Print(err)
+			common.Publish(common.SuezErrors, err.Error())
 			return
 		}
 	})
