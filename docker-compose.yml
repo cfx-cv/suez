@@ -14,10 +14,11 @@ services:
     expose:
       - "80"
     networks:
-      gofeed:
+      default:
+      go-feed:
         aliases:
           - suez_app
 
 networks:
-  gofeed:
-    name: gofeed
+  go-feed:
+    external: true
